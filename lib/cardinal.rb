@@ -5,6 +5,7 @@ require 'io/console'
 require_relative 'classlist'
 require_relative 'player'
 require_relative 'menu'
+require_relative 'attack'
 
 module Cardinal
 
@@ -41,5 +42,12 @@ module Cardinal
     else
       @player = Player.new(nil, pclass, name)
     end
+  end
+
+  def game_over
+    puts "You have met an unfortunate end."
+    puts "Press any button to continue."
+    read_char
+    GameOverMenu.new
   end
 end

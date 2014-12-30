@@ -73,4 +73,19 @@ module Cardinal
       @name = gets.chomp
     end
   end
+
+  class GameOverMenu
+    def initialize
+      clear
+      puts "End Game Stats will go here"
+      print "Play again (y/n)? "
+      c = read_char until c == 'y' or c == 'n'
+      if c == 'y'
+        menu = MainMenu.new
+        menu.display_options
+      else
+        exit
+      end
+    end
+  end
 end

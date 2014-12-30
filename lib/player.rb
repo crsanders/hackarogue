@@ -6,7 +6,7 @@ class Player
   def initialize(save_data = nil, pclass = nil, name = nil)
     unless save_data.nil?
       raise ArgumentError, "Save Data in unexpected format" unless save_data.instance_of? Hash
-      @hp= save_data['hp']
+      @hp = save_data['hp']
       @inv = save_data['inv']
       @equip = save_data['equip']
       @lvl = save_data['lvl']
@@ -17,6 +17,10 @@ class Player
       @class = save_data['class']
       @name = save_data['name']
       @cash = save_data['cash']
+      @xp = save_data['xp']
+      @hit = save_data['hit']
+      @defense = save_data['defense']
+      @damage = save_data['damage']
 
     # If we don't have any save data, we'll use the starting attributes based on
     # the class the player chose
@@ -33,6 +37,10 @@ class Player
       @class = pclass.class
       @name = name
       @cash = pclass.cash
+      @xp = 0
+      @hit = 0
+      @defense = 0
+      @damage = 0
     end
   end
 end
