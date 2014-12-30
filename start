@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require '/home/christian/rbyx/projects/oddities/akiba/lib/cardinal'
+
+Cardinal.new
+menu = MainMenu.new
+menu.display_opening
