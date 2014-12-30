@@ -5,7 +5,7 @@ class MainMenu
   end
 
   def clear
-    system("clear")
+    system("reset")
   end
 
   def display_opening
