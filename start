@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require '/home/christian/rbyx/projects/oddities/hackarogue/lib/cardinal'
+require_relative 'lib/cardinal'
 
 Cardinal.new
 menu = MainMenu.new
