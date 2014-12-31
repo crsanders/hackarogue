@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require_relative 'gamescreen'
+require_relative 'cardinal'
+include Cardinal
+
+MainScreen.new
+while true
+  sleep 1
+end
