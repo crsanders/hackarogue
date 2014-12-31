@@ -2,6 +2,10 @@
 
 class LocationManager 
   def initialize room
+    @maxtop = 0
+    @maxbottom = room.x_size - 1
+    @maxleft = 0
+    @maxright = room.y_size - 1
     @room = room
     @pieces = {} 
   end
@@ -15,19 +19,43 @@ class LocationManager
       @room.addch(v.symbol, v.x, v.y)
     end
   end
-
+  
+  def wallcheck xy
+    @room.walls.include? xy
+  end
   def move_piece name, direction
     piece = @pieces[name]
     @room.addch(" ", piece.x, piece.y)
+
     case direction   
+
     when 'w'
-      piece.y -= 1
+      req = (piece.y - 1)
+      req_xy = "#{piece.x},#{req}"
+      unless wallcheck req_xy or req <= @maxtop 
+        piece.y = req  
+      end
+
     when 's'
-      piece.y += 1
+      req = (piece.y + 1)
+      req_xy = "#{piece.x},#{req}"
+      unless wallcheck req_xy or req >= @maxbottom
+        piece.y = req 
+      end
+
     when 'a'
-      piece.x -= 1
+      req = (piece.x - 1)
+      req_xy = "#{req},#{piece.y}"
+      unless wallcheck req_xy or req <= @maxleft
+        piece.x = req 
+      end
+ 
     when 'd'
-      piece.x += 1
+      req = (piece.x + 1)
+      req_xy = "#{req},#{piece.y}"
+      unless wallcheck req_xy or req >= @maxright
+        piece.x = req 
+      end
     end
   end
 end
