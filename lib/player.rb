@@ -1,4 +1,19 @@
 class Player
+  attr_accessor :hp,
+                :inv,
+                :equip,
+                :lvl,
+                :str,
+                :mind,
+                :dex,
+                :vit,
+                :class,
+                :name,
+                :cash,
+                :xp,
+                :hit,
+                :defense,
+                :damage
 
   # If we have saved data then we'll use that, otherwise create new data
   # save_data is assumed to be a Hash, pclass is assumed to be an
@@ -40,7 +55,7 @@ class Player
       @xp = 0
       @hit = 0
       @defense = 0
-      @damage = 0
+      @damage = "1d6 + 1"
     end
   end
 end

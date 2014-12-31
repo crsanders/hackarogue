@@ -8,6 +8,7 @@ module Cardinal
     attr_accessor :room,
                   :lm
     def initialize
+      @player = @@player
       init_screen
       curs_set 0
       display_top
@@ -28,17 +29,17 @@ module Cardinal
       win.refresh
     end
 
-    def display_main
-      walls = ["10,10","11,10","12,10","13,10","13,11","13,12","13,13"]
-      @room = Room.new(120, 30, 3, 3)
-      @room.walls = walls
-      @lm = LocationManager.new(@room)
-      player = Piece.new("A", 2, 2)
-      @lm.add_piece("player", player)
-      #win = Window.new(30, 120, 3, 3)
-      #win.box(?|, ?-)
-      #win.refresh
-    end
+#    def display_main
+#      walls = ["10,10","11,10","12,10","13,10","13,11","13,12","13,13"]
+#      @room = Room.new(120, 30, 3, 3)
+#      @room.walls = walls
+#      @lm = LocationManager.new(@room)
+#      player = Piece.new("A", 2, 2)
+#      @lm.add_piece("player", player)
+#      #win = Window.new(30, 120, 3, 3)
+#      #win.box(?|, ?-)
+#      #win.refresh
+#    end
 
     def display_player_status
       display_player_name
@@ -50,9 +51,9 @@ module Cardinal
       win.box(?|, ?-)
 
       # These all need to be strings so that we can use .length for alignment
-      player_name = "Evan"
-      player_class = "Squire"
-      player_level = "1"
+      player_name = "#{@player.name}"
+      player_class = "#{@player.class}"
+      player_level = "#{@player.lvl}"
 
       win.setpos(1,1)
       win.addstr("#{player_name}")
@@ -71,19 +72,19 @@ module Cardinal
       win = Window.new(27, 40, 6, 123)
       win.box(?|, ?-)
       win.setpos(1,1)
-      win.addstr("Health: 15/15")
+      win.addstr("Health: #{@player.hp}")
       win.setpos(2,1)
-      win.addstr("Hit: +3")
+      win.addstr("Hit: #{@player.hit}")
       win.setpos(3,1)
-      win.addstr("Damage: 1d6 + 1")
+      win.addstr("Damage: #{@player.damage}")
       win.setpos(5,1)
-      win.addstr("Str: 10")
+      win.addstr("Str: #{@player.str}")
       win.setpos(6,1)
-      win.addstr("Mnd: 5")
+      win.addstr("Mind: #{@player.mind}")
       win.setpos(7,1)
-      win.addstr("Dex: 6")
+      win.addstr("Dex: #{@player.dex}")
       win.setpos(8,1)
-      win.addstr("Vit: 8")
+      win.addstr("Vit: #{@player.vit}")
       win.refresh
     end
 

@@ -11,7 +11,8 @@ require_relative 'locations'
 require_relative 'room'
 
 module Cardinal
-
+  @@player = nil
+  
   def clear
     system("reset")
   end
@@ -41,9 +42,27 @@ module Cardinal
       rescue
         raise ArgumentError, "Save Data corrupted or in invalid format"
       end
-      @player = Player.new(save_data)
+      @@player = Player.new(save_data)
     else
-      @player = Player.new(nil, pclass, name)
+      @@player = Player.new(nil, pclass, name)
+    end
+  end
+
+  def display_main
+    walls = ["10,10","11,10","12,10","13,10","13,11","13,12","13,13"]
+    @room = Room.new(120, 30, 3, 3)
+    @room.walls = walls
+    @lm = LocationManager.new(@room)
+    player = Piece.new("A", 2, 2)
+    @lm.add_piece("player", player)
+  end
+
+  def play_game
+    screen = MainScreen.new
+    while true
+      screen.lm.load_pieces
+      input = screen.room.display
+      screen.lm.move_piece("player", input)
     end
   end
 

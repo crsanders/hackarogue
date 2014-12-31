@@ -39,6 +39,7 @@ module Cardinal
         puts "To be completed"
       else
         ClassMenu.new
+        play_game
       end
     end
   end
@@ -48,7 +49,6 @@ module Cardinal
       select_class
       enter_name
       create_player(nil, @class, @name)
-      puts @player.inspect
     end
 
     def select_class
