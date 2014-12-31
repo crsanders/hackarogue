@@ -6,6 +6,9 @@ require_relative 'classlist'
 require_relative 'player'
 require_relative 'menu'
 require_relative 'attack'
+require_relative 'gamescreen'
+require_relative 'locations'
+require_relative 'room'
 
 module Cardinal
 

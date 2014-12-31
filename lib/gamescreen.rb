@@ -5,6 +5,8 @@ include Curses
 
 module Cardinal
   class MainScreen
+    attr_accessor :room,
+                  :lm
     def initialize
       init_screen
       curs_set 0
@@ -27,9 +29,15 @@ module Cardinal
     end
 
     def display_main
-      win = Window.new(30, 120, 3, 3)
-      win.box(?|, ?-)
-      win.refresh
+      walls = ["10,10","11,10","12,10","13,10","13,11","13,12","13,13"]
+      @room = Room.new(120, 30, 3, 3)
+      @room.walls = walls
+      @lm = LocationManager.new(@room)
+      player = Piece.new("A", 2, 2)
+      @lm.add_piece("player", player)
+      #win = Window.new(30, 120, 3, 3)
+      #win.box(?|, ?-)
+      #win.refresh
     end
 
     def display_player_status

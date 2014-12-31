@@ -4,7 +4,9 @@ require_relative 'gamescreen'
 require_relative 'cardinal'
 include Cardinal
 
-MainScreen.new
+screen = MainScreen.new
 while true
-  sleep 1
+  screen.lm.load_pieces
+  input = screen.room.display
+  screen.lm.move_piece("player", input)
 end
